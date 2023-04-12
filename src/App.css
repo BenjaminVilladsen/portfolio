@@ -1,0 +1,10 @@
+#root {
+  margin: 0 auto;
+  
+}
+body{
+  overscroll-behavior: none;
+  background: #161617;
+}
+
+
