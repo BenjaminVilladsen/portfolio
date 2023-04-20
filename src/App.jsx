@@ -20,6 +20,13 @@ import seven from '/mb/7.png'
 import eight from '/mb/8.png'
 import nine from '/mb/9.png'
 
+import thisOne from '/this/thisone.png'
+import thisTwo from '/this/thistwo.png'
+import thisThree from '/this/thisthree.png'
+import thisFour from '/this/thisfour.png'
+import thisFive from '/this/thisfive.png'
+import thisSix from '/this/thissix.png'
+
 
 
 function App() {
@@ -64,6 +71,7 @@ function App() {
 
   let projects = [
     {
+        isMobile: true,
         title: "Moveboks app",
         description: "Mobile cross-platform app, developed for Moveboks aps, where users can rent speakers, and emlpoyees can manage bookings.",
         secondDescription: "The project was developed with the dart framework, Flutter. The UI was initially created in Figma, and prototypes were tested to ensure proper usability",
@@ -89,6 +97,7 @@ function App() {
         ],
     },
     {
+      isMobile: false,
         title: "Medical Website",
         description: "Web app developed with React.js tailored for medical organizations, allowing customization of their page whilst maintaining an aesthetic feel.",
         image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
@@ -106,6 +115,7 @@ function App() {
         
     },
     {
+        isMobile: false,
         title: "This website",
         description: "This website was developed with React.js, and Tailwind.css. The website is hosted on Firebase and uses emailjs to send emails.",
         secondDescription: "I took some design inspiration from Apple's website. For the different animations i used framer-motion.",
@@ -116,6 +126,12 @@ function App() {
         url: "/this",
 
         images: [
+          thisOne,
+          thisTwo,
+          thisThree,
+          thisFour,
+          thisFive,
+          thisSix
          
       ],
         tags: [

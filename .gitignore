@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+Contact
+
 
 # local env files
 .env.local

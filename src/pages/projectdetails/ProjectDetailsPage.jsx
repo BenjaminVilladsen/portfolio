@@ -13,6 +13,9 @@ import { motion } from "framer-motion";
 //import back arrow from react icons
 import { IoIosArrowBack } from "react-icons/io";
 
+
+import Carousel from "./Carousel";
+
 import git from "/git.png";
 
 const ProjectDetailsPage = ({project}) => {
@@ -108,6 +111,14 @@ const ProjectDetailsPage = ({project}) => {
                         <h1 className="text-3xl text-textGray  text-primary">{project.secondDescription}</h1>
                     </div>
                 </motion.div>
+                {project.images && 
+                <motion.div
+                initial={{opacity: 0, y: "10%"}}
+                animate={{opacity: 1, y: 0, transition: {duration: 0.5, delay: 0.5}}}
+                >
+                    <Carousel images={project.images} isMobile={project.isMobile} index={0}/>
+                </motion.div>
+                }
 
                 {/* if no images */}
                 {(project.images == null || project.images.length == 0) && 
@@ -121,16 +132,16 @@ const ProjectDetailsPage = ({project}) => {
                 </motion.div>
                 }
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pt-14">
+                
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pt-14">
                 { project.images&& project.images.map((image, index) => {
                     return (
                         <div className="w-full  h-[50vh]">
-                        <ImageComponent image={image} index={index} /> 
+                        <ImageComponent allImages={project.images} image={image} index={index} /> 
                         </div>
                     )
                 })}
-               
-            </div>
+                </div> */}
         </div>
         
 
@@ -153,7 +164,20 @@ const ProjectDetailsPage = ({project}) => {
     </div> );
 }
 
-const ImageComponent = ({image, index}) => {
+const ImageComponent = ({image, index, allImages}) => {
+
+    //detect if escape key is pressed
+    useEffect(() => {
+        const handleEsc = (event) => {
+            if (event.keyCode === 27) {
+                setFullScreen(false);
+            }
+        }
+        document.addEventListener("keydown", handleEsc);
+        return () => {
+            document.removeEventListener("keydown", handleEsc);
+        }
+    }, []);
 
     let [fullScreen, setFullScreen] = useState(false);
 
@@ -178,12 +202,13 @@ const ImageComponent = ({image, index}) => {
         style={{display: fullScreen ? "flex" : "none"}}
         animate={{opacity: fullScreen?1:0, transition: {duration: 0.2}}}
 
-        onClick={() => setFullScreen(false)}
+        // onClick={() => setFullScreen(false)}
          className="fixed top-0 left-0 w-full h-full z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className=" p-5 sm:px-20 relative rounded-2xl overflow-hidden h-[80vh] object-contain flex flex-col justify-center items-center  bg-transparent">
-               <motion.img
+            <div className=" p-5 sm:px-20 relative rounded-2xl overflow-hidden object-contain flex flex-col justify-center items-center  bg-transparent">
+               {/* <motion.img
                animate={{opacity: fullScreen?1:0, y:fullScreen?"0%":"10%", transition: {duration: 0.2}}}
-                className="w-full h-full object-contain" src={image} alt="project image" />
+                className="w-full h-full object-contain" src={image} alt="project image" /> */}
+                <Carousel images={allImages} index={index} bigImage={project.isMobile}/>
             </div>
         </motion.div>
         
