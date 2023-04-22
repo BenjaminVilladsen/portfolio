@@ -37,6 +37,11 @@ const Carousel = ({images, isMobile}) => {
     }
   }
 
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  
+
+
   return (
     <div className='w-full py-20'>
       <div className='w-full  bg-opacity-100 rounded-3xl'>
@@ -44,15 +49,22 @@ const Carousel = ({images, isMobile}) => {
         centerMode 
         centerSlidePercentage={slicePercentage} 
         stopOnHover 
-        emulateTouch 
         swipeable 
         showStatus={false} 
         showArrows={false} 
         showThumbs={false} 
+        
         onClickItem={
           (index) => {
-            console.log(index)}
+            if (index === activeIndex -1)
+              setActiveIndex(index)  
+            else if (index === activeIndex +1)
+              setActiveIndex(index)
+            else
+              setActiveIndex(index)
+          }
         }
+        selectedItem={activeIndex}
         className='flex flex-col justify-center items-center h-full w-full bg-white bg-opacity-5 border-2 border-black rounded-2xl sm:rounded-3xl ' >
           {imgList.map((image, index) => {
             return (
